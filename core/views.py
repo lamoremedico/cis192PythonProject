@@ -4,8 +4,10 @@ from django.contrib.auth.models import User
 from core.models import Entry
 from datetime import datetime
 from core.sentiment_analysis import *
+import pandas
 from plotly.offline import plot
-from plotly.graph_objs import Scatter, Figure, Layout
+import plotly.express as px
+from plotly.graph_objs import Scatter, Figure, Layout, Pie
 # make sure to pip install plotly
 
 def splash(request):
@@ -61,6 +63,34 @@ def journal_stats(request):
         				ticktext = tick_names))
 	chart_all = plot(dict(data=data_all, layout=layout_all), output_type='div')
 	return render(request, "journalstats.html", {"all_charts": [chart_day, chart_time, chart_month, chart_all]})
+
+def piecharts(request):
+	allEntries = Entry.objects.all()
+	seasons = split_by_season(allEntries)
+	seasons_name = ["spring", "fall", "winter", "summer", "current month"]
+	labels = ["negative", "neutral", "positive"]
+	chart_list = []
+	for i in range(len(seasons)):
+		if (seasons[i][0] != 0):
+			data = [Pie(labels=labels, values=seasons[i])]
+			layout = Layout(title=seasons_name[i])
+			chart_list.append(plot(dict(data=data, layout=layout), output_type='div'))
+	times = split_by_time(allEntries)
+	times_name = ["morning", "afternoon", "evening", "night"]
+	for i in range(len(times)):
+		if (times[i][0] != 0):
+			data = [Pie(labels=labels, values=times[i])]
+			layout = Layout(title=times_name[i])
+			chart_list.append(plot(dict(data=data, layout=layout), output_type='div'))
+	days = split_by_day(allEntries)
+	days_name = ["weekday", "weekend"]
+	for i in range(len(days)):
+		if (days[i][0] != 0):
+			data = [Pie(labels=labels, values=days[i])]
+			layout = Layout(title=days_name[i])
+			chart_list.append(plot(dict(data=data, layout=layout), output_type='div'))
+	averages = create_avgs(allEntries)
+	return render(request, "piecharts.html", {"all_charts": chart_list})
 
 def home(request):
 	if not request.user.is_authenticated:
