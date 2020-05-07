@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -32,7 +34,11 @@
 						</ul>
 			</div>
 		</div>
-
+			{% for chart in all_charts %}
+			{% autoescape off %}
+                {{ chart }}
+			{% endautoescape %}
+            {% endfor %}
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
