@@ -40,17 +40,45 @@
                          <br>
                     <nav>
                       <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        {% if whichTab == 0 %}
                         <a class="nav-item nav-link active" id="nav-entries-tab" data-toggle="tab" href="#nav-entries" role="tab" aria-controls="nav-entries" aria-selected="true">All Entries</a>
+                        {% else %}
+                        <a class="nav-item nav-link" id="nav-entries-tab" data-toggle="tab" href="#nav-entries" role="tab" aria-controls="nav-entries" aria-selected="true">All Entries</a>
+                        {% endif %}
+
+                        {% if whichTab == 1 %}
+                        <a class="nav-item nav-link active" id="nav-upbeat-tab" data-toggle="tab" href="#nav-upbeat" role="tab" aria-controls="nav-upbeat" aria-selected="false">Upbeat</a>
+                        {% else %}
                         <a class="nav-item nav-link" id="nav-upbeat-tab" data-toggle="tab" href="#nav-upbeat" role="tab" aria-controls="nav-upbeat" aria-selected="false">Upbeat</a>
+                        {% endif %}
+
+                        {% if whichTab == 2 %}
+                        <a class="nav-item nav-link active" id="nav-peaceful-tab" data-toggle="tab" href="#nav-peaceful" role="tab" aria-controls="nav-peaceful" aria-selected="false">Peaceful</a>
+                        {% else %}
                         <a class="nav-item nav-link" id="nav-peaceful-tab" data-toggle="tab" href="#nav-peaceful" role="tab" aria-controls="nav-peaceful" aria-selected="false">Peaceful</a>
+                        {% endif %}
+
+                        {% if whichTab == 3 %}
+                        <a class="nav-item nav-link active" id="nav-Somber-tab" data-toggle="tab" href="#nav-Somber" role="tab" aria-controls="nav-Somber" aria-selected="false">Somber</a>
+                        {% else %}
                         <a class="nav-item nav-link" id="nav-Somber-tab" data-toggle="tab" href="#nav-Somber" role="tab" aria-controls="nav-Somber" aria-selected="false">Somber</a>
+                        {% endif %}
+
+                        {% if whichTab == 4 %}
+                        <a class="nav-item nav-link active" id="nav-tense-tab" data-toggle="tab" href="#nav-tense" role="tab" aria-controls="nav-tense" aria-selected="false">Tense</a>
+                        {% else %}
                         <a class="nav-item nav-link" id="nav-tense-tab" data-toggle="tab" href="#nav-tense" role="tab" aria-controls="nav-tense" aria-selected="false">Tense</a>
+                        {% endif %}
                       </div>
                     </nav>
 
                     <div class="tab-content" id="nav-tabContent">
+                        {% if whichTab == 0 %}
                         <div class="tab-pane fade show active" id="nav-entries" role="tabpanel" aria-labelledby="nav-entries-tab">
-                            <form method="POST" action="/">
+                        {% else %}
+                        <div class="tab-pane fade" id="nav-entries" role="tabpanel" aria-labelledby="nav-entries-tab">
+                        {% endif %}
+                            <form method="POST" action="/0/">
                                 {% csrf_token %}
                                  <br>
                                 <div class="card text-white bg-dark mb-3">
@@ -85,25 +113,25 @@
                                     </div>   
                                     <div class="btn-group">
                                         {% if oneEntry.isPinned %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/0">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/0">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
                                             </form>
                                         {% endif %}
 
                                         {% if oneEntry.isFavorited %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/0">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/0">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
                                             </form>
                                         {% endif %}
-                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/0">
                                             <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
                                         </form>
                                     </div>
@@ -111,8 +139,12 @@
                             {% endfor %}
                         </div>
 
+                        {% if whichTab == 1 %}
+                        <div class="tab-pane fade show active" id="nav-upbeat" role="tabpanel" aria-labelledby="nav-upbeat-tab">
+                        {% else %}
                         <div class="tab-pane fade" id="nav-upbeat" role="tabpanel" aria-labelledby="nav-upbeat-tab">
-                            <form method="POST" action="/">
+                        {% endif %}
+                            <form method="POST" action="/0/">
                                 {% csrf_token %}
                                  <br>
                                 <div class="card text-white bg-dark mb-3">
@@ -142,25 +174,25 @@
                                     </div>   
                                     <div class="btn-group">
                                         {% if oneEntry.isPinned %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/1">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/1">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
                                             </form>
                                         {% endif %}
 
                                         {% if oneEntry.isFavorited %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/1">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/1">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
                                             </form>
                                         {% endif %}
-                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/1">
                                             <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
                                         </form>
                                     </div>
@@ -168,8 +200,12 @@
                             {% endfor %}
                         </div>
 
-                      <div class="tab-pane fade" id="nav-peaceful" role="tabpanel" aria-labelledby="nav-peaceful-tab">
-                          <form method="POST" action="/">
+                    {% if whichTab == 2 %}
+                    <div class="tab-pane fade show active" id="nav-peaceful" role="tabpanel" aria-labelledby="nav-peaceful-tab">
+                    {% else %}
+                    <div class="tab-pane fade" id="nav-peaceful" role="tabpanel" aria-labelledby="nav-peaceful-tab">
+                    {% endif %}
+                          <form method="POST" action="/0/">
                                 {% csrf_token %}
                                  <br>
                                 <div class="card text-white bg-dark mb-3">
@@ -199,33 +235,38 @@
                                     </div>   
                                     <div class="btn-group">
                                         {% if oneEntry.isPinned %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/2">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/2">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
                                             </form>
                                         {% endif %}
 
                                         {% if oneEntry.isFavorited %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/2">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/2">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
                                             </form>
                                         {% endif %}
-                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/2">
                                             <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
                                         </form>
                                     </div>
                                 </div>
                             {% endfor %}
                       </div>
-                      <div class="tab-pane fade" id="nav-Somber" role="tabpanel" aria-labelledby="nav-Somber-tab">
-                        <form method="POST" action="/">
+
+                      {% if whichTab == 3 %}
+                        <div class="tab-pane fade show active" id="nav-Somber" role="tabpanel" aria-labelledby="nav-Somber-tab">
+                        {% else %}
+                        <div class="tab-pane fade" id="nav-Somber" role="tabpanel" aria-labelledby="nav-Somber-tab">
+                        {% endif %}
+                        <form method="POST" action="/0/">
                                 {% csrf_token %}
                                  <br>
                                 <div class="card text-white bg-dark mb-3">
@@ -255,33 +296,37 @@
                                     </div>   
                                     <div class="btn-group">
                                         {% if oneEntry.isPinned %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/3">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/3">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
                                             </form>
                                         {% endif %}
 
                                         {% if oneEntry.isFavorited %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/3">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/3">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
                                             </form>
                                         {% endif %}
-                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/3">
                                             <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
                                         </form>
                                     </div>
                                 </div>
                             {% endfor %}
                         </div>
+                        {% if whichTab == 4 %}
+                        <div class="tab-pane fade show active" id="nav-tense" role="tabpanel" aria-labelledby="nav-tense-tab">
+                        {% else %}
                         <div class="tab-pane fade" id="nav-tense" role="tabpanel" aria-labelledby="nav-tense-tab">
-                            <form method="POST" action="/">
+                        {% endif %}
+                            <form method="POST" action="/0/">
                                 {% csrf_token %}
                                  <br>
                                 <div class="card text-white bg-dark mb-3">
@@ -311,25 +356,25 @@
                                     </div>   
                                     <div class="btn-group">
                                         {% if oneEntry.isPinned %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/4">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/4">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
                                             </form>
                                         {% endif %}
 
                                         {% if oneEntry.isFavorited %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/4">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
                                             </form>
                                         {% else %}
-                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/4">
                                                 <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
                                             </form>
                                         {% endif %}
-                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/4">
                                             <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
                                         </form>
                                     </div>

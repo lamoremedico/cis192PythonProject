@@ -91,13 +91,29 @@ def piecharts(request):
 	averages = create_avgs(allEntries)
 	return render(request, "piecharts.html", {"all_charts": chart_list})
 
-def home(request):
+def homeredirect(request):
+	return redirect('/0')
+
+def home(request, typeDeleted):
 	if not request.user.is_authenticated:
 		return redirect('/login')
+
+	#0, 1, 2, 3, 4 correspond to all, upbeat, peaceful, somber, and tense respectively
+	whichTab = 0
 	if request.method == "POST":
 		newJournalEntry = request.POST["Entry"]
 		newCategory = request.POST["Category"]
+		if newCategory == "Upbeat":
+			whichTab = 1
+		elif newCategory == "Peaceful":
+			whichTab = 2
+		elif newCategory == "Somber":
+			whichTab = 3
+		elif newCategory == "Tense":
+			whichTab = 4
 		entryObj = Entry.objects.create(text=newJournalEntry, categories=newCategory, created_by=request.user, created_at=datetime.now())
+	elif typeDeleted is not None:
+		whichTab = int(typeDeleted)
 
 	allEntries = Entry.objects.all().order_by('-isPinned', '-created_at')
 	upbeatEntries = allEntries.filter(categories="Upbeat")
@@ -105,42 +121,32 @@ def home(request):
 	somberEntries = allEntries.filter(categories="Somber")
 	tenseEntries = allEntries.filter(categories="Tense")
 
-	return render(request, "home.html", {"entries": allEntries, "upbeatEntries": upbeatEntries, "peacefulEntries": peacefulEntries, "somberEntries": somberEntries, "tenseEntries": tenseEntries})
+	return render(request, "home.html", {"entries": allEntries, "whichTab": whichTab, "upbeatEntries": upbeatEntries, "peacefulEntries": peacefulEntries, "somberEntries": somberEntries, "tenseEntries": tenseEntries})
 
-def favorite(request, theEntry, typeofpage, whatpage):
+def favorite(request, theEntry, whichT):
 	test = Entry.objects.get(id=theEntry)
 	test.isFavorited = not test.isFavorited
 	test.save()
-	#Will later need the below branching in order to get back to the right page
-	if typeofpage == "h":
-		return redirect("/hashtag/" + str(whatpage))
-	elif typeofpage == "home":
-		return redirect("/")
-	else:
-		return redirect("/profile/" + str(whatpage))
 
-def pin(request, theEntry, typeofpage, whatpage):
+	whichTab = int(whichT)
+
+	return redirect("/" + str(whichTab))
+
+def pin(request, theEntry, whichT):
 	test = Entry.objects.get(id=theEntry)
 	test.isPinned = not test.isPinned
 	test.save()
-	#Will later need the below branching in order to get back to the right page
-	if typeofpage == "h":
-		return redirect("/hashtag/" + str(whatpage))
-	elif typeofpage == "home":
-		return redirect("/")
-	else:
-		return redirect("/profile/" + str(whatpage))
 
-def delete(request, theEntry, typeofpage, whatpage):
+	whichTab = int(whichT)
+	return redirect("/" + str(whichTab))
+
+def delete(request, theEntry, whichT):
 	t = Entry.objects.filter(id=theEntry)
 	thisEntry = t[0]
+	whichTab = int(whichT)
+	
 	thisEntry.delete()
-	if typeofpage == "h":
-		return redirect("/hashtag/" + str(whatpage))
-	elif typeofpage == "home":
-		return redirect("/")
-	else:
-		return redirect("/profile/" + str(whatpage))
+	return redirect("/" + str(whichTab))
 
 def login_(request):
 	if request.method == "POST":
@@ -150,7 +156,7 @@ def login_(request):
 		user = authenticate(username=username, password=password)
 		if user is not None:
 			login(request, user)
-			return redirect("/")
+			return redirect("/0")
 	return render(request, 'login.html', {})
 
 def signup(request):
@@ -158,7 +164,7 @@ def signup(request):
 					email=request.POST['email'],
 					password=request.POST['password'])
 	login(request, user)
-	return redirect("/")
+	return redirect("/0")
 
 def logout_(request):
 	logout(request)
