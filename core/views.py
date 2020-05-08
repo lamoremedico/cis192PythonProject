@@ -14,7 +14,7 @@ def splash(request):
 	return render(request, "splash.html", {})
 
 def journal_stats(request):
-	allEntries = Entry.objects.all()
+	allEntries = Entry.objects.all().order_by('-created_at')
 	time_x, time_y = create_by_time(allEntries)
 	day_x, day_y = create_by_day(allEntries)
 	month_x, month_y = create_by_month(allEntries)
@@ -25,7 +25,7 @@ def journal_stats(request):
                         opacity=0.8, marker_color='green')]
 	layout_day = Layout(title='Sentiment by Day of Week',
     					xaxis_title="day of week",
-    					yaxis_title="mood")
+    					yaxis_title="mood scale")
 	chart_day = plot(dict(data=data_day, layout=layout_day), output_type='div')
 
 	data_time = [Scatter(x=time_x, y=time_y,
@@ -33,7 +33,7 @@ def journal_stats(request):
                         opacity=0.8, marker_color='green')]
 	layout_time = Layout(title='Sentiment by Time of Day',
     					xaxis_title="time of day",
-    					yaxis_title="mood")
+    					yaxis_title="mood scale")
 	chart_time = plot(dict(data=data_time, layout=layout_time), output_type='div')
 
 	data_month = [Scatter(x=month_x, y=month_y,
@@ -41,7 +41,7 @@ def journal_stats(request):
                         opacity=0.8, marker_color='green')]
 	layout_month = Layout(title='Sentiment by Month',
     					xaxis_title="month",
-    					yaxis_title="mood")
+    					yaxis_title="mood scale")
 	chart_month = plot(dict(data=data_month, layout=layout_month), output_type='div')
 
 	data_all = [Scatter(x=all_x, y=all_y,
@@ -56,13 +56,19 @@ def journal_stats(request):
 
 	layout_all = Layout(title='All Previous Posts',
     					xaxis_title="time",
-    					yaxis_title="mood",
+    					yaxis_title="mood scale",
 						xaxis = dict(
         				tickmode = 'array',
         				tickvals = tick_vals,
         				ticktext = tick_names))
 	chart_all = plot(dict(data=data_all, layout=layout_all), output_type='div')
-	return render(request, "journalstats.html", {"all_charts": [chart_day, chart_time, chart_month, chart_all]})
+	averages = create_avgs(allEntries)
+	for i in range(len(averages)):
+		averages[i] = "{:.2f}".format(averages[i])
+	num_posts = len(allEntries)
+	return render(request, "journalstats.html", {"all_charts": [chart_day, chart_time, chart_month, chart_all],
+												 "total": [averages[0]], "month": [averages[1]],
+												 "total_posts" :[num_posts]})
 
 def piecharts(request):
 	allEntries = Entry.objects.all()
@@ -89,7 +95,6 @@ def piecharts(request):
 			data = [Pie(labels=labels, values=days[i])]
 			layout = Layout(title=days_name[i])
 			chart_list.append(plot(dict(data=data, layout=layout), output_type='div'))
-	averages = create_avgs(allEntries)
 	return render(request, "piecharts.html", {"all_charts": chart_list})
 
 def home(request):

@@ -228,11 +228,11 @@ def get_by_month(all_entries):
 
 def get_this_month(all_entries):
     now = datetime.now()
-    now_year = now.strftime("%Y")
-    now_month = now.strftime("%m")
+    now_year = float(now.strftime("%Y"))
+    now_month = float(now.strftime("%m"))
     this_month = []
     for entry in all_entries:
-        if float(entry.created_at.strftime("%m")) == now_month and entry.created_at.strftime("%Y") == now_year:
+        if float(entry.created_at.strftime("%m")) == now_month and float(entry.created_at.strftime("%Y")) == now_year:
             this_month.append(entry)
     return this_month
 
@@ -278,11 +278,13 @@ def create_all(entries):
         month = float(entry.created_at.strftime("%m"))
         day = float(entry.created_at.strftime("%w"))
         hour = float(entry.created_at.strftime("%H"))
+        min = float(entry.created_at.strftime("%M"))
         day_str = entry.created_at.strftime("%d")
         month_str = entry.created_at.strftime("%b")
+
         tick_name = month_str + " " + day_str
-        time_in_hours = year*24*365 + 30*24*month + 24*day + hour
-        x_axis.append(time_in_hours)
+        time_in_mins = ((year*24*365)/10 + (30*24*month + 24*day + hour)/2)*20 + min/2
+        x_axis.append(time_in_mins)
         x_ticks.append(tick_name)
     return x_axis, y_axis, x_ticks
 

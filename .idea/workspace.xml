@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="092bdc05-826a-4d4e-ac40-97155c1eee08" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/core/templates/piecharts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NickJuliaOnlineJournal/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/NickJuliaOnlineJournal/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/sentiment_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/sentiment_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/templates/journalstats.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/journalstats.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/splash.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/splash.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/piecharts.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/piecharts.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -20,20 +17,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sentiment_analysis.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sentiment_analysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/sentiment_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="108" column="25" lean-forward="true" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
+            <state relative-caret-position="370">
+              <caret line="285" column="79" selection-start-line="285" selection-start-column="79" selection-end-line="285" selection-end-column="79" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="86" column="30" lean-forward="true" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
+            <state relative-caret-position="831">
+              <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -49,7 +46,7 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="248">
               <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
             </state>
           </provider>
@@ -67,7 +64,7 @@
       <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
+            <state relative-caret-position="397">
               <caret line="33" column="33" lean-forward="true" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
             </state>
           </provider>
@@ -76,8 +73,8 @@
       <file leaf-file-name="piecharts.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/piecharts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="31" column="87" selection-start-line="31" selection-start-column="87" selection-end-line="31" selection-end-column="87" />
+            <state relative-caret-position="399">
+              <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -94,8 +91,8 @@
       <file leaf-file-name="journalstats.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/journalstats.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="87" selection-start-line="31" selection-start-column="87" selection-end-line="31" selection-end-column="87" />
+            <state relative-caret-position="210">
+              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -122,6 +119,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>order</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -129,12 +131,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/NickJuliaOnlineJournal/urls.py" />
-        <option value="$PROJECT_DIR$/core/templates/piecharts.html" />
         <option value="$PROJECT_DIR$/core/templates/splash.html" />
-        <option value="$PROJECT_DIR$/core/templates/journalstats.html" />
         <option value="$PROJECT_DIR$/core/templates/home.html" />
-        <option value="$PROJECT_DIR$/core/sentiment_analysis.py" />
+        <option value="$PROJECT_DIR$/core/templates/piecharts.html" />
+        <option value="$PROJECT_DIR$/core/templates/journalstats.html" />
         <option value="$PROJECT_DIR$/core/views.py" />
+        <option value="$PROJECT_DIR$/core/sentiment_analysis.py" />
       </list>
     </option>
   </component>
@@ -282,10 +284,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="27" column="87" selection-start-line="27" selection-start-column="87" selection-end-line="27" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
+        <state relative-caret-position="397">
           <caret line="33" column="33" lean-forward="true" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/journalstats.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/piecharts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -296,30 +319,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/journalstats.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="87" selection-start-line="31" selection-start-column="87" selection-end-line="31" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="27" column="87" selection-start-line="27" selection-start-column="87" selection-end-line="27" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/piecharts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="31" column="87" selection-start-line="31" selection-start-column="87" selection-end-line="31" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="248">
           <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
         </state>
       </provider>
@@ -327,20 +329,20 @@
     <entry file="file://$PROJECT_DIR$/core/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/sentiment_analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="108" column="25" lean-forward="true" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="86" column="30" lean-forward="true" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
+        <state relative-caret-position="831">
+          <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/sentiment_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="285" column="79" selection-start-line="285" selection-start-column="79" selection-end-line="285" selection-end-column="79" />
         </state>
       </provider>
     </entry>
