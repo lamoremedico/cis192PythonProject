@@ -15,9 +15,15 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <br> <br>
-				    <h1>Sign up</h1>				    
+                    <div class="card" style="margin-bottom: 30px">
+                        <div class="card-header">
+                            <h1> EmotionJournal </h1>
+                        </div>
+                    </div>
+
+				    <h3>Sign up</h3>				    
                     <hr>
-                    <form method="POST" action="/signup" style="margin-bottom: 70px">
+                    <form method="POST" action="/signup" style="margin-bottom: 40px">
                     {% csrf_token %}
 					  <div class="form-group">
 					    <label>Username</label>
@@ -34,7 +40,7 @@
 					  <button type="submit" class="btn btn-primary">Sign up</button>
 					</form>
 
-					<h1>Log in</h1>				    
+					<h3>Log in</h3>				    
                     <hr>
 					<form method="POST" action="/login">
                     {% csrf_token %}
@@ -49,7 +55,7 @@
 					  <button type="submit" class="btn btn-primary">Log in</button>
 					</form>
 
-				    <ul class="nav" style="margin-top: 30px">
+				    <ul class="nav" style="margin-top: 40px">
 				        <li class="nav-item">
 				            <a class="nav-link active" href="/aboutus">About Us</a>
 				        </li>

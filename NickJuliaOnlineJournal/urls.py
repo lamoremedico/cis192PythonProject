@@ -19,13 +19,14 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name="home"),
+    path('', views.homeredirect, name="homeredirect"),
+    path('<typeDeleted>/', views.home, name="home"),
     path('aboutus', views.splash, name="splash"),
     path('journalstats', views.journal_stats, name="journalstats"),
     path('piecharts', views.piecharts, name="piecharts"),
-    path('favorite/<theEntry>/<typeofpage>/<whatpage>/', views.favorite, name='favorite'),
-    path('pin/<theEntry>/<typeofpage>/<whatpage>/', views.pin, name='pin'),
-    path('delete/<theEntry>/<typeofpage>/<whatpage>/', views.delete, name='delete'),
+    path('favorite/<theEntry>/<whichT>/', views.favorite, name='favorite'),
+    path('pin/<theEntry>/<whichT>/', views.pin, name='pin'),
+    path('delete/<theEntry>/<whichT>/', views.delete, name='delete'),
     path('login', views.login_, name="login"),
     path('signup', views.signup, name="login"),
     path('logout', views.logout_, name="logout"),
