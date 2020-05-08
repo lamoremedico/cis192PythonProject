@@ -8,7 +8,6 @@ import pandas
 from plotly.offline import plot
 import plotly.express as px
 from plotly.graph_objs import Scatter, Figure, Layout, Pie
-# make sure to pip install plotly
 
 def splash(request):
 	return render(request, "splash.html", {})
@@ -97,14 +96,16 @@ def home(request):
 		return redirect('/login')
 	if request.method == "POST":
 		newJournalEntry = request.POST["Entry"]
-		#Request category fields here
-		entryObj = Entry.objects.create(text=newJournalEntry, categories="placeholder", created_by=request.user, created_at=datetime.now())
-	#TODO - order by  pinned
+		newCategory = request.POST["Category"]
+		entryObj = Entry.objects.create(text=newJournalEntry, categories=newCategory, created_by=request.user, created_at=datetime.now())
+
 	allEntries = Entry.objects.all().order_by('-isPinned', '-created_at')
-	#allEntries = Entry.objects.all().order_by('isPinned').order_by('-created_at')
-	#CAN  USE something like below to filter starred or pinned entries
-		#tweetsWeLike = Tweet.objects.filter(liked_by__username=request.user.username)
-	return render(request, "home.html", {"entries": allEntries})
+	upbeatEntries = allEntries.filter(categories="Upbeat")
+	peacefulEntries = allEntries.filter(categories="Peaceful")
+	somberEntries = allEntries.filter(categories="Somber")
+	tenseEntries = allEntries.filter(categories="Tense")
+
+	return render(request, "home.html", {"entries": allEntries, "upbeatEntries": upbeatEntries, "peacefulEntries": peacefulEntries, "somberEntries": somberEntries, "tenseEntries": tenseEntries})
 
 def favorite(request, theEntry, typeofpage, whatpage):
 	test = Entry.objects.get(id=theEntry)

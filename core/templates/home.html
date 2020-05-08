@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>YourJournal</title>
+    <title>EmotionJournal</title>
   </head>
   <body>   
         <div class="container">
@@ -17,8 +17,8 @@
                 <div class="col-md-8">
                     <br> <br>
                         <ul class="nav mb-0">
-                        <h3> YourJournal </h3>
-                            <li class="nav-item">
+                        <h3> EmotionJournal </h3>
+                            <li class="nav-item" style="margin-left: 30px">
                                 <a class="nav-link active" href="/aboutus">About</a>
                             </li>
                             <li class="nav-item">
@@ -36,53 +36,307 @@
                         <hr>
 
                         <h3> Hi, {{user.username}} </h3>
-                        <h5><br> How are you feeling today? What are your goals?
-                            <br> TODO - add tabbed doc here one for journal one for goals. Add user feedback when journal entry is added</h5>
+                        <h5><br> How are you feeling today? What are your goals? Think about what you are feeling and isolate that emotion into one of four basic mood types. Doing so can help clear your mind and help you focus on what's important. </h5>
                          <br>
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-entries-tab" data-toggle="tab" href="#nav-entries" role="tab" aria-controls="nav-entries" aria-selected="true">All Entries</a>
+                        <a class="nav-item nav-link" id="nav-upbeat-tab" data-toggle="tab" href="#nav-upbeat" role="tab" aria-controls="nav-upbeat" aria-selected="false">Upbeat</a>
+                        <a class="nav-item nav-link" id="nav-peaceful-tab" data-toggle="tab" href="#nav-peaceful" role="tab" aria-controls="nav-peaceful" aria-selected="false">Peaceful</a>
+                        <a class="nav-item nav-link" id="nav-Somber-tab" data-toggle="tab" href="#nav-Somber" role="tab" aria-controls="nav-Somber" aria-selected="false">Somber</a>
+                        <a class="nav-item nav-link" id="nav-tense-tab" data-toggle="tab" href="#nav-tense" role="tab" aria-controls="nav-tense" aria-selected="false">Tense</a>
+                      </div>
+                    </nav>
 
-                        <form method="POST" action="/">
-                            {% csrf_token %}
-                             <br>
-                             <div class="card text-white bg-dark mb-3">
-                                    <h5 class="card-header"> What are you thinking about today? add horizontal pills below for category </h5>
-                                    <div class="card-body">
-                                    <input name="Entry" class="form-control" placeholder="Your journal entry" style="margin-bottom: 15px"/>
-                                    <input type="submit" class="btn btn-primary" value="Post"/>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-entries" role="tabpanel" aria-labelledby="nav-entries-tab">
+                            <form method="POST" action="/">
+                                {% csrf_token %}
+                                 <br>
+                                <div class="card text-white bg-dark mb-3">
+                                    <h5 class="card-header"> What are you thinking about today? </h5>
+                                        <input name="Entry" class="form-control" placeholder="Your journal entry" style="margin-bottom: 15px; margin-left: 15px; max-width: 700px"/>
+                                            <div class="btn-group">
+                                                <input type="submit" class="btn btn-primary" value="Post"/>
+
+                                                <select id="Category" name="Category">
+                                                    <option value="Upbeat">Upbeat</option>
+                                                    <option value="Peaceful">Peaceful</option>
+                                                    <option value="Somber">Somber</option>
+                                                    <option value="Tense">Tense</option>
+                                                </select>
+                                            </div>                        
                                 </div>                        
-                            </div>                        
-                        </form>
-                        {% for oneEntry in entries %}
-                            <div class="card border border-dark" style="margin-bottom: 15px">
-                                <div class="card-body">
-                                    <h5 class="card-title"> {{oneEntry.text}} </h5>
-                                    <div class="card-text"> <i>{{oneEntry.created_at}} </i>
-                                        <br>
-                                    </div>
-                                </div>   
-                            {% if oneEntry.isPinned %}
-                                <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
-                                    <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
-                                </form>
-                            {% else %}
-                                <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
-                                    <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
-                                </form>
-                            {% endif %}
-
-                            {% if oneEntry.isFavorited %}
-                                <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
-                                    <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
-                                </form>
-                            {% else %}
-                                <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
-                                    <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
-                                </form>
-                            {% endif %}
-                            <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
-                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
                             </form>
-                            </div>
-                        {% endfor %}
+                            {% for oneEntry in entries %}
+                                <div class="card border border-dark" style="margin-bottom: 15px">
+                                    {% if "Upbeat" == oneEntry.category %}
+                                        <div class="card-header"> An <i>{{oneEntry.categories}}</i> journal entry posted at {{oneEntry.created_at}} 
+                                        </div>
+                                    {% else %}
+                                        <div class="card-header"> A <i>{{oneEntry.categories}}</i> journal entry posted at {{oneEntry.created_at}} 
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title"> {{oneEntry.text}} </h5>
+                                        <div class="card-text"> <i> {{oneEntry.created_at}} </i>
+                                            <br>
+                                        </div>
+                                    </div>   
+                                    <div class="btn-group">
+                                        {% if oneEntry.isPinned %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
+                                            </form>
+                                        {% endif %}
+
+                                        {% if oneEntry.isFavorited %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
+                                            </form>
+                                        {% endif %}
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                            <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-upbeat" role="tabpanel" aria-labelledby="nav-upbeat-tab">
+                            <form method="POST" action="/">
+                                {% csrf_token %}
+                                 <br>
+                                <div class="card text-white bg-dark mb-3">
+                                    <h5 class="card-header"> What are you thinking about today? </h5>
+                                        <input name="Entry" class="form-control" placeholder="Your journal entry" style="margin-bottom: 15px; margin-left: 15px; max-width: 700px"/>
+                                            <div class="btn-group">
+                                                <input type="submit" class="btn btn-primary" value="Post"/>
+
+                                                <select id="Category" name="Category">
+                                                    <option value="Upbeat">Upbeat</option>
+                                                    <option value="Peaceful">Peaceful</option>
+                                                    <option value="Somber">Somber</option>
+                                                    <option value="Tense">Tense</option>
+                                                </select>
+                                            </div>                        
+                                </div>                        
+                            </form>
+                            {% for oneEntry in upbeatEntries %}
+                                <div class="card border border-dark" style="margin-bottom: 15px">
+                                    <div class="card-header"> An <i>{{oneEntry.categories}}</i> journal entry posted at {{oneEntry.created_at}} 
+                                        </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"> {{oneEntry.text}} </h5>
+                                        <div class="card-text"> <i>{{oneEntry.created_at}} </i>
+                                            <br>
+                                        </div>
+                                    </div>   
+                                    <div class="btn-group">
+                                        {% if oneEntry.isPinned %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
+                                            </form>
+                                        {% endif %}
+
+                                        {% if oneEntry.isFavorited %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
+                                            </form>
+                                        {% endif %}
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                            <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                      <div class="tab-pane fade" id="nav-peaceful" role="tabpanel" aria-labelledby="nav-peaceful-tab">
+                          <form method="POST" action="/">
+                                {% csrf_token %}
+                                 <br>
+                                <div class="card text-white bg-dark mb-3">
+                                    <h5 class="card-header"> What are you thinking about today? </h5>
+                                        <input name="Entry" class="form-control" placeholder="Your journal entry" style="margin-bottom: 15px; margin-left: 15px; max-width: 700px"/>
+                                            <div class="btn-group">
+                                                <input type="submit" class="btn btn-primary" value="Post"/>
+
+                                                <select id="Category" name="Category">
+                                                    <option value="Peaceful">Peaceful</option>
+                                                    <option value="Upbeat">Upbeat</option>
+                                                    <option value="Somber">Somber</option>
+                                                    <option value="Tense">Tense</option>
+                                                </select>
+                                            </div>                        
+                                </div>                        
+                            </form>
+                            {% for oneEntry in peacefulEntries %}
+                                <div class="card border border-dark" style="margin-bottom: 15px">
+                                    <div class="card-header"> A <i>{{oneEntry.categories}}</i> journal entry posted at {{oneEntry.created_at}} 
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"> {{oneEntry.text}} </h5>
+                                        <div class="card-text"> <i>{{oneEntry.created_at}} </i>
+                                            <br>
+                                        </div>
+                                    </div>   
+                                    <div class="btn-group">
+                                        {% if oneEntry.isPinned %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
+                                            </form>
+                                        {% endif %}
+
+                                        {% if oneEntry.isFavorited %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
+                                            </form>
+                                        {% endif %}
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                            <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                      </div>
+                      <div class="tab-pane fade" id="nav-Somber" role="tabpanel" aria-labelledby="nav-Somber-tab">
+                        <form method="POST" action="/">
+                                {% csrf_token %}
+                                 <br>
+                                <div class="card text-white bg-dark mb-3">
+                                    <h5 class="card-header"> What are you thinking about today? </h5>
+                                        <input name="Entry" class="form-control" placeholder="Your journal entry" style="margin-bottom: 15px; margin-left: 15px; max-width: 700px"/>
+                                            <div class="btn-group">
+                                                <input type="submit" class="btn btn-primary" value="Post"/>
+
+                                                <select id="Category" name="Category">
+                                                    <option value="Somber">Somber</option>
+                                                    <option value="Peaceful">Peaceful</option>
+                                                    <option value="Upbeat">Upbeat</option>
+                                                    <option value="Tense">Tense</option>
+                                                </select>
+                                            </div>                        
+                                </div>                        
+                            </form>
+                            {% for oneEntry in somberEntries %}
+                                <div class="card border border-dark" style="margin-bottom: 15px">
+                                    <div class="card-header"> A <i>{{oneEntry.categories}}</i> journal entry posted at {{oneEntry.created_at}} 
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"> {{oneEntry.text}} </h5>
+                                        <div class="card-text"> <i>{{oneEntry.created_at}} </i>
+                                            <br>
+                                        </div>
+                                    </div>   
+                                    <div class="btn-group">
+                                        {% if oneEntry.isPinned %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
+                                            </form>
+                                        {% endif %}
+
+                                        {% if oneEntry.isFavorited %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
+                                            </form>
+                                        {% endif %}
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                            <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="tab-pane fade" id="nav-tense" role="tabpanel" aria-labelledby="nav-tense-tab">
+                            <form method="POST" action="/">
+                                {% csrf_token %}
+                                 <br>
+                                <div class="card text-white bg-dark mb-3">
+                                    <h5 class="card-header"> What are you thinking about today? </h5>
+                                        <input name="Entry" class="form-control" placeholder="Your journal entry" style="margin-bottom: 15px; margin-left: 15px; max-width: 700px"/>
+                                            <div class="btn-group">
+                                                <input type="submit" class="btn btn-primary" value="Post"/>
+
+                                                <select id="Category" name="Category">
+                                                    <option value="Tense">Tense</option>
+                                                    <option value="Somber">Somber</option>
+                                                    <option value="Peaceful">Peaceful</option>
+                                                    <option value="Upbeat">Upbeat</option>
+                                                </select>
+                                            </div>                        
+                                </div>                        
+                            </form>
+                            {% for oneEntry in tenseEntries %}
+                                <div class="card border border-dark" style="margin-bottom: 15px">
+                                    <div class="card-header"> A <i>{{oneEntry.categories}}</i> journal entry posted at {{oneEntry.created_at}} 
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"> {{oneEntry.text}} </h5>
+                                        <div class="card-text"> <i>{{oneEntry.created_at}} </i>
+                                            <br>
+                                        </div>
+                                    </div>   
+                                    <div class="btn-group">
+                                        {% if oneEntry.isPinned %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unpin</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/pin/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Pin</button>
+                                            </form>
+                                        {% endif %}
+
+                                        {% if oneEntry.isFavorited %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-secondary">Unfavorite</button>
+                                            </form>
+                                        {% else %}
+                                            <form method="GET" action="/favorite/{{oneEntry.id}}/home/home">
+                                                <button type="submit" class="mt-2 ml-2 mb-2 btn btn-primary">Favorite</button>
+                                            </form>
+                                        {% endif %}
+                                        <form method="GET" action="/delete/{{oneEntry.id}}/home/home">
+                                            <button type="submit" class="mt-2 ml-2 mb-2 btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
             </div>
         </div>
 
