@@ -66,10 +66,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="piecharts.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="piecharts.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/piecharts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
+            <state relative-caret-position="185">
               <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
             </state>
           </provider>
@@ -84,10 +84,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="journalstats.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="journalstats.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/templates/journalstats.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="601">
               <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
             </state>
           </provider>
@@ -139,7 +139,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="122" />
     <option name="y" value="41" />
-    <option name="width" value="1133" />
+    <option name="width" value="1265" />
     <option name="height" value="795" />
   </component>
   <component name="ProjectView">
@@ -294,13 +294,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/journalstats.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/splash.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -337,8 +330,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/piecharts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="185">
           <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/journalstats.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
         </state>
       </provider>
     </entry>
