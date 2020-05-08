@@ -13,7 +13,7 @@ def splash(request):
 	return render(request, "splash.html", {})
 
 def journal_stats(request):
-	allEntries = Entry.objects.all().order_by('-created_at')
+	allEntries = Entry.objects.all().filter(created_by__username=request.user.username)
 	time_x, time_y = create_by_time(allEntries)
 	day_x, day_y = create_by_day(allEntries)
 	month_x, month_y = create_by_month(allEntries)
@@ -70,7 +70,7 @@ def journal_stats(request):
 												 "total_posts" :[num_posts]})
 
 def piecharts(request):
-	allEntries = Entry.objects.all()
+	allEntries = Entry.objects.all().filter(created_by__username=request.user.username)
 	seasons = split_by_season(allEntries)
 	seasons_name = ["spring", "fall", "winter", "summer", "current month"]
 	labels = ["negative", "neutral", "positive"]
@@ -120,7 +120,7 @@ def home(request, typeDeleted):
 	elif typeDeleted is not None:
 		whichTab = int(typeDeleted)
 
-	allEntries = Entry.objects.all().order_by('-isPinned', '-created_at')
+	allEntries = Entry.objects.all().filter(created_by__username=request.user.username).order_by('-isPinned', '-created_at')
 	upbeatEntries = allEntries.filter(categories="Upbeat")
 	peacefulEntries = allEntries.filter(categories="Peaceful")
 	somberEntries = allEntries.filter(categories="Somber")
