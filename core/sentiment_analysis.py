@@ -6,6 +6,7 @@ nltk.download('punkt')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from datetime import datetime
 import numpy as np
+from core.models import Entry
 
 # from core.models import Entries
 # allEntries = Entries.objects.all()
@@ -25,13 +26,13 @@ Analysis for:
 '''
 
 # next, we initialize VADER so we can use it within our Python script
-sid = SentimentIntensityAnalyzer()
+#sid = SentimentIntensityAnalyzer()
 # the variable 'message_text' now contains the text we will analyze.
 # input texts needs ''' quotes before and after
-message_text = '''Like you, I am getting very frustrated with this process. I am genuinely trying to be as reasonable as possible. I am not trying to "hold up" the deal at the last minute. I'm afraid that I am being asked to take a fairly large leap of faith after this company (I don't mean the two of you -- I mean Enron) has screwed me and the people who work for me.'''
+#message_text = '''Like you, I am getting very frustrated with this process. I am genuinely trying to be as reasonable as possible. I am not trying to "hold up" the deal at the last minute. I'm afraid that I am being asked to take a fairly large leap of faith after this company (I don't mean the two of you -- I mean Enron) has screwed me and the people who work for me.'''
 
 # Calling the polarity_scores method on sid and passing in the message_text outputs a dictionary with negative, neutral, positive, and compound scores for the input text
-scores = sid.polarity_scores(message_text)
+#scores = sid.polarity_scores(message_text)
 
 # Here we loop through the keys contained in scores (pos, neu, neg, and compound scores) and print the key-value pairs on the screen
 # for key in sorted(scores):
@@ -107,10 +108,10 @@ def compute_scores_pie(entries):
     neu = 0
     pos = 0
     for entry in entries:
-        scores = SentimentIntensityAnalyzer().polarity_scores(entry.text)
-        neg += scores["neg"]
-        neu += scores["neu"]
-        pos += scores["pos"]
+        sent = entry.__get_all_sentiment__()
+        neg += sent[0]
+        neu += sent[1]
+        pos += sent[2]
     if len(entries) > 0:
         len_entries = len(entries)
         sentiment_vect = [neg/len(entries), neu/len(entries), pos/len(entries)]
@@ -123,7 +124,7 @@ def compute_scores_vector(entries):
     # entries = entries.order_by('-created_at')
     sentiment_vect = []
     for entry in entries:
-        scores = SentimentIntensityAnalyzer().polarity_scores(entry.text)
+        scores = entry.__get_sentiment__()
         sentiment_vect.append(scores["compound"])
     return sentiment_vect
 
@@ -131,7 +132,7 @@ def compute_scores_vector(entries):
 def compute_scores_avg(entries):
     sentiment_vect = 0
     for entry in entries:
-        scores = SentimentIntensityAnalyzer().polarity_scores(entry.text)
+        scores = entry.__get_sentiment__()
         sentiment_vect += (scores["compound"])
     if len(entries) > 0:
         return sentiment_vect/len(entries)

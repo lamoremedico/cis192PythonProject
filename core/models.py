@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+nltk.download('vader_lexicon')
+nltk.download('punkt')
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+
 
 class Entry(models.Model):
 	text = models.TextField()
@@ -9,15 +15,15 @@ class Entry(models.Model):
 	created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="created_by")
 	created_at = models.DateTimeField()
 
-#To be implemented later
-"""
-	class Goal(models.Model):
-		text = models.TextField()
-		isCompleted = models.BooleanField()
-		target_completion_date = models.DateTimeField()
-		reminders = models.TextField() ## should be weekly, biweekly, monthly --- could make an enum for this
-		categories = models.TextField()
-		created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="created_by")
-		created_at = models.DateTimeField(auto_now=True)
-		completed_at = models.DateTimeField()
-"""
+
+	def __get_sentiment__(self):
+		return SentimentIntensityAnalyzer().polarity_scores(self.text)
+
+
+	def __get__all__sentiment(self):
+		scores = self.__get_sentiment__()
+		neg = scores["neg"]
+		neu = scores["neu"]
+		pos = scores["pos"]
+		return [neg, neu, pos]
+
