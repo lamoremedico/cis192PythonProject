@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="092bdc05-826a-4d4e-ac40-97155c1eee08" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/core/sentiment_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/sentiment_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/journalstats.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/journalstats.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/piecharts.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/piecharts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sentiment_analysis.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sentiment_analysis.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/sentiment_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="285" column="79" selection-start-line="285" selection-start-column="79" selection-end-line="285" selection-end-column="79" />
+            <state relative-caret-position="240">
+              <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -70,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="piecharts.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="piecharts.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/templates/piecharts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="24" />
+            <state relative-caret-position="209">
+              <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -305,13 +301,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/piecharts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/splash.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -341,8 +330,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/sentiment_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="285" column="79" selection-start-line="285" selection-start-column="79" selection-end-line="285" selection-end-column="79" />
+        <state relative-caret-position="240">
+          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/piecharts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
         </state>
       </provider>
     </entry>
