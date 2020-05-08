@@ -107,14 +107,13 @@ def compute_scores_pie(entries):
     neg = 0
     neu = 0
     pos = 0
-    for entry in entries:
-        sent = entry.__get_all_sentiment__()
-        neg += sent[0]
-        neu += sent[1]
-        pos += sent[2]
     if len(entries) > 0:
-        len_entries = len(entries)
-        sentiment_vect = [neg/len(entries), neu/len(entries), pos/len(entries)]
+        for entry in entries:
+            sent = entry.__get_all_sentiment__()
+            neg += sent[0]
+            neu += sent[1]
+            pos += sent[2]
+            sentiment_vect = [neg/len(entries), neu/len(entries), pos/len(entries)]
         return sentiment_vect
     else:
         return [0, 0, 0]

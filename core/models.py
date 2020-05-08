@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+import nltk
 nltk.download('vader_lexicon')
 nltk.download('punkt')
-import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
@@ -20,8 +20,8 @@ class Entry(models.Model):
 		return SentimentIntensityAnalyzer().polarity_scores(self.text)
 
 
-	def __get__all__sentiment(self):
-		scores = self.__get_sentiment__()
+	def __get_all_sentiment__(self):
+		scores = SentimentIntensityAnalyzer().polarity_scores(self.text)
 		neg = scores["neg"]
 		neu = scores["neu"]
 		pos = scores["pos"]
